@@ -41,6 +41,11 @@
 
 ## 과제 제출
 - 본인의 이름으로 된 패키지에 있는 StudentDetailImpl 클래스에 과제를 구현하면 됩니다. <br>
+- 과제를 제출할 때에는 AIOS 세션 때와 같이 PR을 통해 본인의 패키지만 제출하면 됩니다.
+- PR 제목은 `25-26-Server-Assignment-01_본인이름` 으로 제출해주시기 바랍니다.
+
+### 과제 마감 기한
+- 9월 28일 오후 11:59
 
 ## Description
 
@@ -122,8 +127,4 @@ studentList.stream()
 <!-- 참고한 레퍼런스가 있다면 공유해 주세요 -->
 
 https://stackoverflow.com/questions/22840170/using-streams-how-can-i-map-the-values-in-a-hashmap
-- 과제를 제출할 때에는 AIOS 세션 때와 같이 PR을 통해 본인의 패키지만 제출하면 됩니다.
-- PR 제목은 `25-26-Server-Assignment-01_본인이름` 으로 제출해주시기 바랍니다.
 
-### 과제 마감 기한
-- 9월 28일 오후 11:59
