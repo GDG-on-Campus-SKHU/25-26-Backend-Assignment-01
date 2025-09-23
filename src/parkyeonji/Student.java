@@ -1,4 +1,4 @@
-package sample;
+package parkyeonji;
 
 import java.time.LocalDate;
 
