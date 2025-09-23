@@ -1,4 +1,4 @@
-/*package sample;
+package 강우혁;
 
 import java.time.LocalDate;
 
@@ -52,4 +52,3 @@ public class Student {
         return "이름: " + name + ", 나이: " + age + ", 파트: " + part + ", 생일: " + birthday;
     }
 }
-*/

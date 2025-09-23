@@ -1,4 +1,4 @@
-/*package sample;
+package 강우혁;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,4 +57,3 @@ public class Main {
         System.out.println("8. 학생 전체 출력 성공");
     }
 }
-*/
