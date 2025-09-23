@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Comparator;
 
 public class StudentDetailImpl implements StudentDetail {
     Map<Integer, Student> studentsMap = new HashMap<>();
@@ -68,7 +67,7 @@ public class StudentDetailImpl implements StudentDetail {
     public List<Student> findAllStudents() {
         return studentsMap.entrySet().stream()
                 .map(e -> e.getValue())
-                .sorted(Comparator.comparing(e -> e.getBirthday()))
+                .sorted((a, b) -> a.getBirthday().compareTo(b.getBirthday()))
                 .toList();
     }
 
