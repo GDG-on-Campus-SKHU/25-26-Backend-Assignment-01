@@ -40,6 +40,7 @@ public class StudentDetailImpl implements StudentDetail {
     public List<String> findStudentsByAgeMoreThan(int age) {
         return studentsMap.values().stream()
                 .filter(student -> student.getAge() >= age)
+                .limit(5)
                 .map(Student::getName)
                 .toList();
     }
