@@ -43,7 +43,7 @@ public class StudentDetailImpl implements StudentDetail {
     @Override
     public List<String> findStudentsByAgeMoreThan(int age) {
         List<String> names = studentsMap.values().stream()
-                .filter(student -> student.getAge() >= 23)
+                .filter(student -> student.getAge() >= age)
                 .limit(5)
                 .map(Student::getName)
                 .toList();
