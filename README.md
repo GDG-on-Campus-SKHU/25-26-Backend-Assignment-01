@@ -1,4 +1,4 @@
-# GDG Backend 파트 2주차 과제aa
+# GDG Backend 파트 2주차 과제
 
 ## 과제 설명
 - 학생을 저장, 관리하는 시스템을 구현해 봅시다. <br>
@@ -41,6 +41,87 @@
 
 ## 과제 제출
 - 본인의 이름으로 된 패키지에 있는 StudentDetailImpl 클래스에 과제를 구현하면 됩니다. <br>
+
+## Description
+
+<!-- 구현 및 작업 내용을 적어주세요 -->
+
+- addStudent 메소드
+> id와 student를 전달받아 hashmap 자료형의 id 인자를 key 매개변수로 조회, 해당 key를 포함하고 있지 않다면 put(id, student)으로 추가 후 참 반환, 아니라면 거짓 반환
+
+- removeStudent 메소드
+> id를 전달받아 hashmap 자료형의 id 인자를 key 매개변수로 조회, 해당 key를 포함하고 있다면 remove(id)로 삭제 후 참 반환, 아니라면 거짓 반환
+
+- updateStudent 메소드
+> id와 student를 전달받아 hashmap 자료형의 id 인자를 key 매개변수로 조회, 해당 key를 포함하고 있다면 put(id, student)로 덮어씌기 후 참 반환, 아니라면 거짓 반환
+
+- getStudentCount 메소드
+> hashmap의 길이를 size() 메소드로 반환
+
+- findStudentsByAgeMoreThan 메소드
+> stream 메소드를 사용하기 위해 hashmap 자료형을 entryset()으로 set으로 변환, 전달받은 age보다 큰 학생을 거르기 위해 람다 함수로 구현, 길이를 5로 제한 후, 데이터의 요소를 student에서 student.name으로 변환, toList() 메소드로 List 자료형으로 반환
+
+- findStudentByPart 메소드
+> stream 메소드를 사용하기 위해 hashmap 자료형을 entryset()으로 set으로 변환, 전달받은 part와 값이 같은 학생을 거르기 위해 람다함수로 구현, 해당 set을 student로 변환, null 값이 올 수도 있으므로 findAny()로 opaional 자료형으로 반환
+
+- findAllStudents 메소드
+> stream 메소드를 사용하기 위해 hashmap 자료형을 entryset()으로 set으로 변환, set 요소를 student 객체로 변환, student 객체 내 LocalDate로 저장된 날짜 객체 내의 compareTo() 메소드를 sorted() 메소드에 전달하여 생년월일로 정렬, toList() 메소드로 List 자료형으로 반환
+```
+/* 아래 코드로 잘 정렬되었는지 확인하였음 */
+studentList.stream()
+        .forEach(System.out::println);
+```
+```
+이름: 김태우, 나이: 27, 파트: backend, 생일: 1999-12-12
+이름: 황재현, 나이: 25, 파트: web, 생일: 2001-02-13
+이름: 이솔, 나이: 24, 파트: pm, 생일: 2002-03-13
+이름: 주현지, 나이: 24, 파트: design, 생일: 2002-04-05
+이름: 권지후, 나이: 24, 파트: backend, 생일: 2002-05-29
+이름: 박대경, 나이: 24, 파트: backend, 생일: 2002-06-08
+이름: 이서영, 나이: 24, 파트: pm, 생일: 2002-10-09
+이름: 윤준석, 나이: 23, 파트: organizer, 생일: 2003-03-04
+이름: 한시연, 나이: 22, 파트: mobile, 생일: 2004-08-25
+이름: 홍길동, 나이: 22, 파트: pm, 생일: 2004-08-31
+이름: 김보민, 나이: 21, 파트: backend, 생일: 2005-02-14
+```
+
+- printStudents 메소드
+> stream 메소드를 사용하기 위해 hashmap 자료형을 entryset()으로 set으로 변환, System.out 클래스의 println 메소드를 참조하여 forEach() 메소드로 전달, 모든 요소에 대해 println 메소드 실행, 해당 객체에 오버라이딩 되어 있는 toString() 메소드로 출력
+```
+/* 주석을 해제하여 잘 출력되는지 확인하였음 */
+// sd.printStudents();
+```
+```
+1=이름: 홍길동, 나이: 22, 파트: pm, 생일: 2004-08-31
+2=이름: 윤준석, 나이: 23, 파트: organizer, 생일: 2003-03-04
+3=이름: 황재현, 나이: 25, 파트: web, 생일: 2001-02-13
+4=이름: 한시연, 나이: 22, 파트: mobile, 생일: 2004-08-25
+5=이름: 김태우, 나이: 27, 파트: backend, 생일: 1999-12-12
+6=이름: 권지후, 나이: 24, 파트: backend, 생일: 2002-05-29
+7=이름: 박대경, 나이: 24, 파트: backend, 생일: 2002-06-08
+8=이름: 김보민, 나이: 21, 파트: backend, 생일: 2005-02-14
+9=이름: 이솔, 나이: 24, 파트: pm, 생일: 2002-03-13
+10=이름: 이서영, 나이: 24, 파트: pm, 생일: 2002-10-09
+11=이름: 주현지, 나이: 24, 파트: design, 생일: 2002-04-05
+```
+
+## Important content
+
+<!-- 주의 깊게 봐줬으면 하는 부분을 적어주세요 -->
+
+- 
+
+## Question
+
+<!-- 궁금한 점을 적어주세요 -->
+
+- 
+
+## Reference
+
+<!-- 참고한 레퍼런스가 있다면 공유해 주세요 -->
+
+https://stackoverflow.com/questions/22840170/using-streams-how-can-i-map-the-values-in-a-hashmap
 - 과제를 제출할 때에는 AIOS 세션 때와 같이 PR을 통해 본인의 패키지만 제출하면 됩니다.
 - PR 제목은 `25-26-Server-Assignment-01_본인이름` 으로 제출해주시기 바랍니다.
 
