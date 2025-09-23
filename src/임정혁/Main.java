@@ -53,7 +53,8 @@ public class Main {
 
         // printStudents() 메서드는 구현해야 합니다. 하지만 출력이 길어서 메서드 사용은 하지 않을게요
         // 과제 제출하면 내용 다 보이니까 구현 꼭 해주세요
-        // sd.printStudents();
+
+        sd.printStudents();
         System.out.println("8. 학생 전체 출력 성공");
     }
 }
