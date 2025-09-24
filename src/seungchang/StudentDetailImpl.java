@@ -10,7 +10,7 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public boolean addStudent(int id, Student student) {
-        if(studentsMap.containsKey(id)){
+        if (studentsMap.containsKey(id)) {
             return false;
         }
         studentsMap.put(id, student);
@@ -19,20 +19,20 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public boolean removeStudent(int id) {
-        if (!studentsMap.containsKey(id)){
-            return false;
+        if (studentsMap.containsKey(id)) {
+            studentsMap.remove(id);
+            return true;
         }
-        studentsMap.remove(id);
-        return true;
+        return false;
     }
 
     @Override
     public boolean updateStudent(int id, Student student) {
-        if (!studentsMap.containsKey(id)){
-            return false;
+        if (studentsMap.containsKey(id)) {
+            studentsMap.put(id, student);
+            return true;
         }
-        studentsMap.put(id, student);
-        return true;
+        return false;
     }
 
     @Override
@@ -42,33 +42,31 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public List<String> findStudentsByAgeMoreThan(int age) {
-        List<String> names = studentsMap.values().stream()
+        return studentsMap.values().stream()
                 .filter(student -> student.getAge() >= age)
                 .limit(5)
                 .map(Student::getName)
                 .toList();
-        return names;
     }
 
     @Override
     public Optional<Student> findStudentByPart(String part) {
-        Optional<Student> student = studentsMap.values().stream()
-                .filter(student1 -> student1.getPart().equals(part)).findAny();
-        return student;
+        return studentsMap.values().stream()
+                .filter(student1 -> student1.getPart().equals(part))
+                .findAny();
     }
 
     @Override
     public List<Student> findAllStudents() {
-        List<Student> students = studentsMap.values().stream()
+        return studentsMap.values().stream()
                 .sorted(Comparator.comparing(Student::getBirthday))
                 .toList();
-        return students;
     }
 
     @Override
     public void printStudents() {
         Iterator<Student> studentIterator = findAllStudents().iterator();
-        while (studentIterator.hasNext()){
+        while (studentIterator.hasNext()) {
             studentIterator.next().toString();
         }
     }
