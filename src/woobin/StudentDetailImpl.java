@@ -7,28 +7,29 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public boolean addStudent(int id, Student student) {
-        if (studentsMap.containsKey(id))
-            return false;
-        studentsMap.put(id, student);
-        return true;
+        /*
+        studentsMap 안에 id(key) 없으면 put 하고 null 반환 => null == null 은 true이므로 return true;
+        있으면 value 반환 => value == null 은 false이므로 return false;
+         */
+        return studentsMap.putIfAbsent(id, student) == null;
     }
 
     @Override
     public boolean removeStudent(int id) {
-        if (studentsMap.containsKey(id)) {
-            studentsMap.remove(id);
-            return true;
-        }
-        return false;
+        /*
+        studentsMap에 id 없으면 null 반환 => null != null 은 false
+        있으면 매핑 삭제 후 old value 반환 => old value != null 은 true
+         */
+        return studentsMap.remove(id) != null;
     }
 
     @Override
     public boolean updateStudent(int id, Student student) {
-        if (studentsMap.containsKey(id)) {
-            studentsMap.put(id, student);
-            return true;
-        }
-        return false;
+        /*
+        studentsMap에 id 없으면 null 반환 => null != null 은 false
+        있으면 기존 value를 새로운 value로 교체하고, old value 반환 => old value != null 은 true
+         */
+        return studentsMap.replace(id, student) != null;
     }
 
     @Override
