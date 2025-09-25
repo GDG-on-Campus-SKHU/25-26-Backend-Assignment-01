@@ -11,13 +11,10 @@ public class StudentDetailImpl implements StudentDetail {
     private final Map<Integer, Student> studentsMap = new HashMap<>();
 
     // 1번
+    // Map의 putIfAbsent() 메서드 사용
     @Override
     public boolean addStudent(int id, Student student) {
-        if (studentsMap.containsKey(id)) {
-            return false;
-        }
-        studentsMap.put(id, student);
-        return true;
+        return studentsMap.putIfAbsent(id, student) == null;
     }
 
     // 2번
@@ -27,13 +24,10 @@ public class StudentDetailImpl implements StudentDetail {
     }
 
     // 3번
+    // Map의 replace() 메서드 사용
     @Override
     public boolean updateStudent(int id, Student student) {
-        if (studentsMap.containsKey(id)) {
-            studentsMap.put(id, student);
-            return true;
-        }
-        return false;
+        return studentsMap.replace(id, student) != null;
     }
 
     // 4번
@@ -43,16 +37,18 @@ public class StudentDetailImpl implements StudentDetail {
     }
 
     // 5번
+    // filter > map > limit 순서 변경
     @Override
     public List<String> findStudentsByAgeMoreThan(int age) {
         return studentsMap.values().stream()
                 .filter(student -> student.getAge() >= age)
-                .limit(5)
                 .map(Student::getName)
+                .limit(5)
                 .collect(Collectors.toList());
     }
 
     // 6번
+    // 개행 수정 (예정)
     @Override
     public Optional<Student> findStudentByPart(String part) {
         return studentsMap.values().stream()
@@ -68,10 +64,11 @@ public class StudentDetailImpl implements StudentDetail {
                 .collect(Collectors.toList());
     }
 
-    // 8반
+    // 8번
+    // 전체 학생 정보 출력 및 불필요한 스트림 삭제
     @Override
     public void printStudents() {
-        studentsMap.values().stream()
-                .forEach(student -> System.out.println(student.getName()));
+        studentsMap.values()
+                .forEach(System.out::println);
     }
 }
