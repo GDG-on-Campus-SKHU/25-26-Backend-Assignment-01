@@ -48,12 +48,23 @@ public class StudentDetailImpl implements StudentDetail {
                 .collect(Collectors.toList());
     }
 
-    // 6번
-    // Objects.equals 사용으로 null 처리
+    // 6번 - Objects.equals 사용으로 null 처리
+    /*
     @Override
     public Optional<Student> findStudentByPart(String part) {
         return studentsMap.values().stream()
                 .filter(student -> Objects.equals(student.getPart(), part))
+                .findFirst();
+    }
+    */
+
+    // 6번 - Optional을 활용한 null 처리
+    @Override
+    public Optional<Student> findStudentByPart(String part) {
+        return studentsMap.values().stream()
+                .filter(student -> Optional.ofNullable(student.getPart())
+                        .map(p -> p.equals(part))
+                        .orElse(part == null))
                 .findFirst();
     }
 
