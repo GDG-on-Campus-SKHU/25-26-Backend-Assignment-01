@@ -6,7 +6,7 @@ import sample.StudentDetail;
 import java.util.*;
 
 public class StudentDetailImpl implements StudentDetail {
-    Map<Integer, Student> studentsMap = new HashMap<>();
+    private final Map<Integer, Student> studentsMap = new HashMap<>();
 
     @Override
     public boolean addStudent(int id, Student student) {
@@ -44,8 +44,8 @@ public class StudentDetailImpl implements StudentDetail {
     public List<String> findStudentsByAgeMoreThan(int age) {
         return studentsMap.values().stream()
                 .filter(student -> student.getAge() >= age)
-                .limit(5)
                 .map(Student::getName)
+                .limit(5)
                 .toList();
     }
 
@@ -65,9 +65,14 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public void printStudents() {
+        /*
         Iterator<Student> studentIterator = findAllStudents().iterator();
         while (studentIterator.hasNext()) {
-            studentIterator.next().toString();
+            System.out.println(studentIterator.next().toString());
         }
+        이승창 참고용.
+         */
+        studentsMap.values().stream()
+                .forEach(System.out::println); // println을 사용하면 자동으로 toString메소드 호출
     }
 }
