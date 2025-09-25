@@ -10,13 +10,11 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public boolean addStudent(int id, Student student) {
-        if(!studentsMap.containsKey(id)){
-            studentsMap.put(id, student);
-            return true;
-        }
-        else {
+        if(studentsMap.containsKey(id)){
             return false;
         }
+        studentsMap.put(id, student);
+        return true;
     }
 
     @Override
@@ -25,9 +23,7 @@ public class StudentDetailImpl implements StudentDetail {
             studentsMap.remove(id);
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     @Override
@@ -36,9 +32,7 @@ public class StudentDetailImpl implements StudentDetail {
             studentsMap.put(id, student);
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     @Override
