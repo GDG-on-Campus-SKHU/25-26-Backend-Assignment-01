@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -48,11 +49,11 @@ public class StudentDetailImpl implements StudentDetail {
     }
 
     // 6번
-    // 개행 수정 (예정)
+    // Objects.equals 사용으로 null 처리
     @Override
     public Optional<Student> findStudentByPart(String part) {
         return studentsMap.values().stream()
-                .filter(student -> student.getPart().equals(part))
+                .filter(student -> Objects.equals(student.getPart(), part))
                 .findFirst();
     }
 
