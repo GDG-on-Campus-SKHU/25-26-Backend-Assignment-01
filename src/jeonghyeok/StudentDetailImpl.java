@@ -48,6 +48,14 @@ public class StudentDetailImpl implements StudentDetail {
                 .collect(Collectors.toList());
     }
 
+    // 6번 - 첫 코드
+    @Override
+    public Optional<Student> findStudentByPart(String part) {
+        return studentsMap.values().stream()
+                .filter(student -> student.getPart().equals(part))
+                .findFirst();
+    }
+
     // 6번 - Objects.equals 사용으로 null 처리
     /*
     @Override
@@ -59,6 +67,7 @@ public class StudentDetailImpl implements StudentDetail {
     */
 
     // 6번 - Optional을 활용한 null 처리
+    /*
     @Override
     public Optional<Student> findStudentByPart(String part) {
         return studentsMap.values().stream()
@@ -67,6 +76,7 @@ public class StudentDetailImpl implements StudentDetail {
                         .orElse(part == null))
                 .findFirst();
     }
+     */
 
     // 7번
     @Override
