@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Objects;
 
 public class StudentDetailImpl implements StudentDetail {
     Map<Integer, Student> studentsMap = new HashMap<>();
@@ -50,7 +51,7 @@ public class StudentDetailImpl implements StudentDetail {
     @Override
     public Optional<Student> findStudentByPart(String part) {
         return studentsMap.values().stream()
-                .filter(student -> "backend".equals(student.getPart()))
+                .filter(student -> Objects.equals(part, student.getPart()))
                 .findFirst();
     }
 
