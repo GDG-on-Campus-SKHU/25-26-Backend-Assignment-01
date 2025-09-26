@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Comparator;
 
 public class StudentDetailImpl implements StudentDetail {
-    Map<Integer, Student> studentsMap = new HashMap<>();
+    private final Map<Integer, Student> studentsMap = new HashMap<>();
 
     @Override
     public boolean addStudent(int id, Student student) {
