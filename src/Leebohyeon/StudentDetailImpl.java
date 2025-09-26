@@ -37,11 +37,8 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public int getStudentCount() {
-        List<String> names = studentsMap.values().stream()
-                .filter(s -> s.getAge() >=23)
-                .map(s -> s.getName())
-                .toList();
-        return names.size();
+
+        return studentsMap.size();
     }
 
     @Override
