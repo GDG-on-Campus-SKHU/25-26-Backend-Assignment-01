@@ -14,8 +14,8 @@ public class Main {
         sd.addStudent(2, new Student("윤준석", 23, "organizer", "2003-03-04"));
         sd.addStudent(3, new Student("황재현", 25, "web", "2001-02-13"));
         sd.addStudent(4, new Student("한시연", 22, "mobile", "2004-08-25"));
-        sd.addStudent(5, new Student("김태우", 27, null, "1999-12-12"));  // null 테스트
-        //sd.addStudent(5, new Student("김태우", 27, "backend", "1999-12-12"));
+        //sd.addStudent(5, new Student("김태우", 27, null, "1999-12-12"));  // null 테스트
+        sd.addStudent(5, new Student("김태우", 27, "backend", "1999-12-12"));
         sd.addStudent(6, new Student("권지후", 24, "backend", "2002-05-29"));
         sd.addStudent(7, new Student("박대경", 24, "backend", "2002-06-08"));
         sd.addStudent(8, new Student("김보민", 21, "backend", "2005-02-14"));
