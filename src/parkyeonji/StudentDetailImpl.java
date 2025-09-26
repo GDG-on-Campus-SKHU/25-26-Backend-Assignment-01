@@ -1,48 +1,42 @@
 package parkyeonji;
 
-import java.util.*;
+
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class StudentDetailImpl implements StudentDetail {
-    Map<Integer, Student> studentsMap = new HashMap<>();
+    private final Map<Integer, Student> studentsMap = new HashMap<>();
 
     @Override
     public boolean addStudent(int id, Student student) {
-        if (studentsMap.containsKey(id)) {
-            return false;
-        }
+        if (studentsMap.containsKey(id)) { return false; }
         studentsMap.put(id, student);
         return true;
     }
 
     @Override
     public boolean removeStudent(int id) {
-        if (!studentsMap.containsKey(id)) {
-            return false;
+        if (studentsMap.containsKey(id)) {
+            studentsMap.remove(id);
+            return true;
         }
-        studentsMap.remove(id);
-        return true;
+        return false;
     }
 
     @Override
     public boolean updateStudent(int id, Student student) {
-        if (!studentsMap.containsKey(id)) {
-            return false;
+        if (studentsMap.containsKey(id)) {
+            studentsMap.put(id, student);
+            return true;
         }
-        Student existing = studentsMap.get(id);
-
-        existing.setName(student.getName());
-        existing.setAge(student.getAge());
-        existing.setPart(student.getPart());
-        existing.setBirthday(student.getBirthday());
-
-        return true;
-
+        return false;
     }
 
     @Override
-    public int getStudentCount() {
-        return studentsMap.size();
-    }
+    public int getStudentCount() { return studentsMap.size(); }
 
     @Override
     public List<String> findStudentsByAgeMoreThan(int age) {
@@ -57,7 +51,7 @@ public class StudentDetailImpl implements StudentDetail {
     public Optional<Student> findStudentByPart(String part) {
         return studentsMap.values().stream()
                 .filter(s -> s.getPart().equals(part))
-                .findFirst();
+                .findAny();
     }
 
     @Override
