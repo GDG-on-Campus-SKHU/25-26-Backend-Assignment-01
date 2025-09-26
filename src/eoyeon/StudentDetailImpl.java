@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Objects;
+import java.util.Comparator;
 
 public class StudentDetailImpl implements StudentDetail {
     Map<Integer, Student> studentsMap = new HashMap<>();
@@ -58,6 +59,7 @@ public class StudentDetailImpl implements StudentDetail {
     @Override
     public List<Student> findAllStudents() {
         return studentsMap.values().stream()
+                .sorted(Comparator.comparing(Student::getBirthday))
                 .toList();
     }
 
