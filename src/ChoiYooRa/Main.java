@@ -51,6 +51,13 @@ public class Main {
         if (studentList.size() == 11)
             System.out.println("7. 학생 전체 탐색 성공");
 
+        //7번에서 정렬한 리스트 출력 코드
+        for(Student student : studentList) {
+            System.out.println(student);
+        }
+        System.out.println();
+
+        //HashMap 출력 코드
         sd.printStudents();
         // printStudents()는 구현해야 합니다. 하지만 출력이 길어서 메서드 사용은 하지 않을게요
         // 과제 제출하면 내용 다 보이니까 구현 꼭 해주세요
