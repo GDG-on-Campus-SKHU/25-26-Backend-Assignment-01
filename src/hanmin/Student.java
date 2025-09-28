@@ -1,4 +1,4 @@
-package Hanmin;
+package hanmin;
 
 import java.time.LocalDate;
 
