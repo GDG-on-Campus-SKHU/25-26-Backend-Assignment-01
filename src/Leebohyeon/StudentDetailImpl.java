@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class StudentDetailImpl implements StudentDetail {
-    Map<Integer, Student> studentsMap = new HashMap<>();
+    private Map<Integer, Student> studentsMap = new HashMap<>();
 
     @Override
     public boolean addStudent(int id, Student student) {
@@ -30,14 +30,12 @@ public class StudentDetailImpl implements StudentDetail {
         if (studentsMap.containsKey(id)) {
             studentsMap.put(id,student);
             return true;
-        } else {
-            return false;
-        }
+        }   return false;
+
     }
 
     @Override
     public int getStudentCount() {
-
         return studentsMap.size();
     }
 
@@ -45,7 +43,8 @@ public class StudentDetailImpl implements StudentDetail {
     public List<String> findStudentsByAgeMoreThan(int age) {
         return studentsMap.values().stream()
                 .filter(s -> s.getAge() >= age)
-                .map(Student::toString)
+                .map(Student::getName)
+                .limit(5)
                 .toList();
     }
 
@@ -60,7 +59,7 @@ public class StudentDetailImpl implements StudentDetail {
     public List<Student> findAllStudents() {
         return studentsMap.values().stream()
                 .sorted(Comparator.comparing(Student::getAge))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
