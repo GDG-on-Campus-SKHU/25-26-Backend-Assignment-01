@@ -8,33 +8,33 @@ import java.util.Optional;
 
 public class StudentDetailImpl implements StudentDetail {
 
-    private final Map<Integer, Student> store = new HashMap<>();
+    // store -> studentsById 로 변경
+    private final Map<Integer, Student> studentsById = new HashMap<>();
 
     @Override
     public boolean addStudent(int id, Student student) {
-        if (store.containsKey(id)) return false;
-        store.put(id, student);
-        return true;
+        // putIfAbsent 사용
+        return studentsById.putIfAbsent(id, student) == null;
     }
 
     @Override
     public boolean removeStudent(int id) {
-        return store.remove(id) != null;
+        return studentsById.remove(id) != null;
     }
 
     @Override
     public boolean updateStudent(int id, Student student) {
-        return store.replace(id, student) != null;
+        return studentsById.replace(id, student) != null;
     }
 
     @Override
     public int getStudentCount() {
-        return store.size();
+        return studentsById.size();
     }
 
     @Override
     public List<String> findStudentsByAgeMoreThan(int age) {
-        return store.values().stream()
+        return studentsById.values().stream()
                 .filter(s -> s.getAge() >= age)
                 .map(Student::getName)
                 .limit(5)
@@ -43,24 +43,26 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public Optional<Student> findStudentByPart(String part) {
-        if (part == null) return Optional.empty();
-        return store.values().stream()
+        if (part == null) {
+            return Optional.empty();
+        }
+        return studentsById.values().stream()
                 .filter(s -> {
-                    String p = s.getPart();
-                    return p != null && p.equalsIgnoreCase(part);
+                    String studentPart = s.getPart(); // p -> studentPart로 변경
+                    return studentPart != null && studentPart.equalsIgnoreCase(part);
                 })
                 .findFirst();
     }
 
     @Override
     public List<Student> findAllStudents() {
-        return store.values().stream()
+        return studentsById.values().stream()
                 .sorted(Comparator.comparing(Student::getBirthday))
                 .toList();
     }
 
     @Override
     public void printStudents() {
-        store.values().stream().forEach(System.out::println);
+        studentsById.values().stream().forEach(System.out::println);
     }
 }
