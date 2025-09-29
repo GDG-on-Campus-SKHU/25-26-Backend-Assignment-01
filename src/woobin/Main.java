@@ -1,4 +1,4 @@
-package sample;
+package woobin;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +40,7 @@ public class Main {
             System.out.println("4. 정보 수정 성공");
 
         List<String> nameList = sd.findStudentsByAgeMoreThan(23);
-        if (nameList.size() == 5)
+        if (nameList.size() == 7)
             System.out.println("5. 조건 탐색 성공1");
 
         Optional<Student> studentOptional = sd.findStudentByPart("backend");
