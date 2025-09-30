@@ -1,9 +1,13 @@
 package LGH;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class StudentDetailImpl implements StudentDetail {
-    Map<Integer, Student> studentsMap = new HashMap<>();
+    private Map<Integer, Student> studentsMap = new HashMap<>();
 
     @Override
     public boolean addStudent(int id, Student student) {
@@ -11,7 +15,7 @@ public class StudentDetailImpl implements StudentDetail {
             studentsMap.put(id, student);
             return true;
         }
-        else return false;
+        return false;
     }
 
     @Override
@@ -20,16 +24,17 @@ public class StudentDetailImpl implements StudentDetail {
             studentsMap.remove(id);
             return true;
         }
-        else return false;
+        return false;
     }
 
     @Override
     public boolean updateStudent(int id, Student student) {
-        if (studentsMap.get(id) != null) {
-            studentsMap.put(id, student);
-            return true;
-        }
-        else return false;
+        return studentsMap.replace(id, student) != null;
+//        if (studentsMap.get(id) != null) {
+//            studentsMap.put(id, student);
+//            return true;
+//        }
+//        return false;
     }
 
     @Override
@@ -50,7 +55,7 @@ public class StudentDetailImpl implements StudentDetail {
     public Optional<Student> findStudentByPart(String part) {
         return studentsMap.values().stream()
                 .filter(student -> student.getPart().equals(part))
-                .limit(1)
+//                .limit(1)
                 .findFirst();
 
     }
@@ -65,6 +70,6 @@ public class StudentDetailImpl implements StudentDetail {
     @Override
     public void printStudents() {
         studentsMap.values().stream()
-                .forEach(student -> System.out.println(student));
+                .forEach(System.out::println);
     }
 }
