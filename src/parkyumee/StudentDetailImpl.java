@@ -1,46 +1,37 @@
 package parkyumee;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class StudentDetailImpl implements StudentDetail {
-    Map<Integer, Student> studentsMap = new HashMap<>();
+    private Map<Integer, Student> studentsMap = new HashMap<>();
 
     @Override
     public boolean addStudent(int id, Student student) {
         if (studentsMap.containsKey(id)) {
             return false;
         }
-        else {
-            Student newStudent = new Student(student.getName(), student.getAge(), student.getPart(), student.getBirthday().toString());
-            studentsMap.put(id, newStudent);
+        studentsMap.put(id, student);
 
-            return true;
-        }
+        return true;
 
     }
 
     @Override
     public boolean removeStudent(int id) {
-        if (studentsMap.containsKey(id)){
+        if (studentsMap.containsKey(id)) {
             studentsMap.remove(id);
-
             return true;
         }
-        else {
             return false;
-        }
     }
 
     @Override
     public boolean updateStudent(int id, Student student) {
-        if (studentsMap.containsKey(id)){
-            studentsMap.put(id, student);
-
-            return true;
-        }
-        else {
-            return false;
-        }
+            return studentsMap.replace(id, student) != null;
     }
 
     @Override
@@ -50,21 +41,31 @@ public class StudentDetailImpl implements StudentDetail {
 
     @Override
     public List<String> findStudentsByAgeMoreThan(int age) {
-        return studentsMap.values().stream() .filter(s -> s.getAge() >= age) .limit(5) .map(Student::getName) .toList();
+        return studentsMap.values().stream()
+                .filter(s -> s.getAge() >= age)
+                .limit(5)
+                .map(Student::getName)
+                .toList();
     }
 
     @Override
     public Optional<Student> findStudentByPart(String part) {
-        return studentsMap.values().stream() .filter(s -> s.getPart() .equals(part)) .findFirst();
+        return studentsMap.values().stream()
+                .filter(s -> s.getPart().equals(part))
+                .findFirst();
     }
 
     @Override
     public List<Student> findAllStudents() {
-        return studentsMap.values().stream() .sorted(Comparator.comparing(Student::getBirthday)).toList();
+        return studentsMap.values().stream()
+                .sorted(Comparator.comparing(Student::getBirthday))
+                .toList(); //불변객체
+                //.collect(Collectors.tolist()); //가변객체
     }
 
     @Override
     public void printStudents() {
-        studentsMap.values().stream() .forEach(s -> System.out.println(s));
+        studentsMap.values().stream()
+                .forEach(System.out::println);
     }
 }
