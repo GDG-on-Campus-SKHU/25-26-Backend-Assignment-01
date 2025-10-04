@@ -1,4 +1,4 @@
-package sample;
+package pjw;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +21,8 @@ public class Main {
         sd.addStudent(9, new Student("이솔", 24, "pm", "2002-03-13"));
         sd.addStudent(10, new Student("이서영", 24, "pm", "2002-10-09"));
         sd.addStudent(11, new Student("주현지", 24, "design", "2002-04-05"));
+
+
         if (sd.getStudentCount() == 11)
             System.out.println("1. 학생 추가 성공");
 
@@ -51,9 +53,7 @@ public class Main {
         if (studentList.size() == 11)
             System.out.println("7. 학생 전체 탐색 성공");
 
-        // sd.printStudents();
-        // printStudents()는 구현해야 합니다. 하지만 출력이 길어서 메서드 사용은 하지 않을게요
-        // 과제 제출하면 내용 다 보이니까 구현 꼭 해주세요
+        sd.printStudents();
         System.out.println("8. 학생 전체 출력 성공");
     }
 }
